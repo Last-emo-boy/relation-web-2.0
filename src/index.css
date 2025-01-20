@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 全局盒模型设置 */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 确保根元素高度占满整个视口 */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 设置 #root 容器的最大宽度和居中布局，并启用 flex 布局 */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 响应式调整 #root 边距 */
+@media (max-width: 768px) {
+  #root {
+    padding: 1rem;
+  }
+}
+
+/* 自定义 logo 样式及动画 */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+/* Logo 响应式调整 */
+@media (max-width: 480px) {
+  .logo {
+    height: 4em;
+    padding: 1em;
+  }
+}
+
+/* 定义 logo 旋转动画 */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 在不偏好动画的情况下，为特定元素应用旋转动画 */
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* 自定义 card 样式 */
+.card {
+  padding: 2em;
+}
+
+/* 响应式调整 card 内边距 */
+@media (max-width: 768px) {
+  .card {
+    padding: 1em;
+  }
+}
+
+/* 设置说明文本颜色 */
+.read-the-docs {
+  color: #888;
+}
