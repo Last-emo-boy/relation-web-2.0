@@ -16,6 +16,7 @@ cytoscape.use(cxtmenu);
 
 const Graph = ({ 
   onSelectNode, 
+  onSelectEdge,
   highlightNodeId,       
   filterRelationship,
   onGraphReady            
@@ -92,6 +93,7 @@ const Graph = ({
 
     if (onGraphReady) onGraphReady(cyInstance);
 
+    // 节点点击事件
     cyInstance.on('tap', 'node', (evt) => {
       try {
         const node = evt.target;
@@ -106,6 +108,18 @@ const Graph = ({
         }
       } catch (error) {
         console.error('Error handling node tap:', error);
+      }
+    });
+
+    // 边点击事件
+    cyInstance.on('tap', 'edge', (evt) => {
+      try {
+        const edge = evt.target;
+        if (onSelectEdge) {
+          onSelectEdge(edge.data());
+        }
+      } catch (error) {
+        console.error('Error handling edge tap:', error);
       }
     });
 
@@ -166,7 +180,7 @@ const Graph = ({
         console.error('Error destroying Cytoscape instance:', error);
       }
     };
-  }, [onSelectNode, onGraphReady]);
+  }, [onSelectNode, onSelectEdge, onGraphReady]);
 
   useEffect(() => {
     try {
